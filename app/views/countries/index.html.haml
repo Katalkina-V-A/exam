@@ -5,6 +5,10 @@
     =link_to new_country_path, class: 'btn btn-primary' do
       =fa_icon 'plus'
       Добавить
+%ul.nav.pagination
+  -Country::CHARS.each do |i|
+    %li
+      =link_to i[0], countrysearch_index_path(search: i[0]), data: {method: :get}
 .list-group
   -@countries.each do |country|
     =link_to country.name,country, class: 'list-group-item'

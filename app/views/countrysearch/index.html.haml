@@ -1,0 +1,9 @@
+.page-header
+  %h1 Результаты поиска
+-if @scountry.present?
+  .list-group
+    -@scountry.each do |country|
+      =link_to country.name, country, class: 'list-group-item'
+  =paginate @scountry
+-else
+  .alert.alert-info По запросу #{params[:search]} ничего не найдено.
