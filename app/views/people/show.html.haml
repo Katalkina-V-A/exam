@@ -8,6 +8,10 @@
   .col-md-3
     -if @person.avatar?
       =image_tag @person.avatar.url(:medium), alt: @person.name, class: 'img-responsive'
+    %br.text-center
+      %i.text-muted
+        Просмотров:
+        =@person.impressionist_count(:filter => :all)
   .col-md-9
     -if @person.birthday
       %dl

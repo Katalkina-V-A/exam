@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+  is_impressionable
   has_attached_file :avatar, styles: {medium: "250x250>", thumb: "100x100>"}
 
 
