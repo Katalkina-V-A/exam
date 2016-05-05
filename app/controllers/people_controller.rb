@@ -55,7 +55,7 @@ class PeopleController < ApplicationController
   end
 
   def person_params
-    params.require(:person).permit(:name, :origin_name, :birthday, :avatar, :country_id)
+    params.require(:person).permit(:name, :origin_name, :birthday, :avatar, :country_id, :adres)
   end
 
   def check_edit

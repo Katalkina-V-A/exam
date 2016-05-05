@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505150425) do
+ActiveRecord::Schema.define(version: 20160505205506) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160505150425) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "country_id"
+    t.string   "adres"
   end
 
   add_index "people", ["country_id"], name: "index_people_on_country_id"

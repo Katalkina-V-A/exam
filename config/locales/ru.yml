@@ -36,6 +36,7 @@ ru:
         films: Фильмы
         produced_films: Срежиссированные фильмы
         country_id: Страна
+        adres: Официальная страница
       film:
         name: Название
         origin_name: Название (в оригинале)

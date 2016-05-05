@@ -11,6 +11,10 @@
         =f.text_field :origin_name, class: 'form-control'
     .col-md-3
       .form-group
+        =f.label :adres
+        =f.text_field :adres, class: 'form-control'
+    .col-md-3
+      .form-group
         =f.label :birthday
         =f.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@person.birthday) if @person.birthday)
     .col-md-3

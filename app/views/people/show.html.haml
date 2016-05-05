@@ -13,6 +13,9 @@
         Просмотров:
         =@person.impressionist_count(:filter => :all)
   .col-md-9
+    -if @person.adres
+      %a{:href => @person.adres, :target => "_blank"}
+        Официальная страница
     -if @person.birthday
       %dl
         %dt=Person.human_attribute_name(:birthday)
