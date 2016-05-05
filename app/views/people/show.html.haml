@@ -21,6 +21,8 @@
           %span.text-muted
             =surround ?(,?) do
               =@person.human_age
+            %i
+              =@person.zod[0]
         -if @person.country
           %dt=Film.human_attribute_name(:country)
           %dd=link_to @person.country.name,@person.country
