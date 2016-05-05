@@ -30,6 +30,13 @@
         -@person.produced_films.each do |film|
           =render 'films/film', film: film
     -if @person.films.any?
+      Фильмы(года):
+      =Film.premier(@person.id).year
+      —
+      -if Film.premier(@person.id).year != Film.latest(@person.id).year
+        =Film.latest(@person.id).year
+      -else
+        ?...
       %h3=Person.human_attribute_name(:films)
       .list-group
         -@person.films.each do |film|

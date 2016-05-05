@@ -27,6 +27,13 @@ class Film < ActiveRecord::Base
     u.try(:admin?)
   end
 
+  def self.latest(id)
+    Film.joins(:people).where('films_people.person_id = ?', id).order(:year).last
+  end
+  def self.premier(id)
+    Film.joins(:people).where('films_people.person_id = ?', id).order(:year).first
+  end
+
   def self.search(search)
     where("upper(name) like upper(:q) or upper(origin_name) like upper(:q)", q: "%#{search}%")
   end
