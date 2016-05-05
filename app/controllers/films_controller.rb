@@ -1,6 +1,7 @@
 class FilmsController < ApplicationController
   before_action :check_authentication, except: :index
   before_action :check_edit, except: [:index, :show]
+  impressionist actions: [:show]
   before_action :set_film, only: [:show, :edit, :update, :destroy]
 
   def index

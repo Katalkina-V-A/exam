@@ -8,6 +8,10 @@
   .col-md-3
     -if @film.cover?
       =image_tag @film.cover.url(:medium), alt: @film.name, class: 'img-responsive'
+    %br.text-center
+      %i.text-muted
+        Просмотров:
+        =@film.impressionist_count(:filter => :all)
   .col-md-9
     -if @film.slogan.present?
       %blockquote

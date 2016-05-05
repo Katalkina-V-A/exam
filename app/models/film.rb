@@ -1,6 +1,6 @@
 class Film < ActiveRecord::Base
   has_attached_file :cover, styles: {medium: "250x250>", thumb: "100x100>"}
-
+  is_impressionable
   belongs_to :country
   belongs_to :genre
   belongs_to :director, class_name: 'Person'
