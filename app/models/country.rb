@@ -1,6 +1,6 @@
 class Country < ActiveRecord::Base
   has_many :films, ->{ordering.base}, dependent: :destroy
-
+  has_many :people
   scope :ordering, -> { order(:name) }
 
   before_destroy :can_destroy?

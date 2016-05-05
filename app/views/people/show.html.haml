@@ -17,6 +17,9 @@
           %span.text-muted
             =surround ?(,?) do
               =@person.human_age
+        -if @person.country
+          %dt=Film.human_attribute_name(:country)
+          %dd=link_to @person.country.name,@person.country
     -if @person.produced_films.any?
       %h3=Film.human_attribute_name(:director_id)
       .list-group

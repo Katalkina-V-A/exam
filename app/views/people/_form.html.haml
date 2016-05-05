@@ -15,6 +15,10 @@
         =f.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@person.birthday) if @person.birthday)
     .col-md-3
       .form-group
+        =f.label :country_id
+        =f.select :country_id, Country.ordering.map{|c| [c.name,c.id]},{}, class: 'form-control'
+    .col-md-3
+      .form-group
         =f.label :avatar
         =f.file_field :avatar
       -if @person.avatar?
