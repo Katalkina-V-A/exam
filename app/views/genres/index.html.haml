@@ -9,5 +9,8 @@
   -@genres.each do |genre|
     =link_to genre, class: 'list-group-item' do
       =genre.name
+      %span.text-muted
+        =surround ?(,?) do
+          =Genre.quantity(genre.id)
 
 =paginate @genres

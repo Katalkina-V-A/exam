@@ -13,4 +13,7 @@ class Genre < ActiveRecord::Base
     films.blank?
   end
 
+  def self.quantity(id)
+    Genre.joins(:films).where('films.genre_id = ?', id).count    
+  end
 end
