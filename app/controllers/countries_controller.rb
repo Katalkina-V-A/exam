@@ -5,7 +5,13 @@ class CountriesController < ApplicationController
 
 
   def index
-    @countries = Country.ordering.page(params[:page])
+    if params[:sort] == '0'
+      @countries = Country.order(:square).page(params[:page])
+    elsif params[:sort] == '1'
+      @countries = Country.order(square: :desc).page(params[:page])
+    else
+      @countries = Country.ordering.page(params[:page])
+    end
   end
 
   def show
@@ -48,7 +54,7 @@ class CountriesController < ApplicationController
   end
 
   def country_params
-    params.require(:country).permit(:name)
+    params.require(:country).permit(:name, :square)
   end
 
   def check_edit

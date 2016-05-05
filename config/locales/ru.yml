@@ -28,6 +28,7 @@ ru:
         name: Название
       country:
         name: Название
+        square: Площадь
       person:
         name: Имя
         origin_name: Имя (в оригинале)
