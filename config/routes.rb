@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'search/index'
+
   resources :films
   resources :people
   resources :countries

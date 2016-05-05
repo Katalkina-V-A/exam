@@ -27,6 +27,9 @@ class Film < ActiveRecord::Base
     u.try(:admin?)
   end
 
+  def self.search(search)
+    where("upper(name) like upper(:q) or upper(origin_name) like upper(:q)", q: "%#{search}%")
+  end
 
   def person_tokens=(val)
     self.person_ids = val.split(',')
