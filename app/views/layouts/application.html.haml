@@ -10,5 +10,29 @@
     =render 'topbar'
     .container
       =render 'flash_messages'
-      = yield
+      -if @current_user!=nil
+        .col-md-9
+          = yield
+        .col-md-3
+          .page-header
+            %i
+              Сегодня свой
+              %br
+              день рождения
+              %br празднуют
+          .list-group
+            -Person.ordering.each do |f|
+              -if f.dayperson == 0
+                =link_to f, class: 'list-group-item' do
+                  .media
+                    -if f.avatar?
+                      .media-left=image_tag f.avatar.url(:thumb), alt: f.name, class: 'media-object'
+                    .media-body
+                      %h4.media-heading=f.name
+                      =l(f.birthday, format: :long)
+                      %span.text-muted
+                        =surround ?(,?) do
+                          =f.human_age
+      -else
+        = yield
       =render 'footer'

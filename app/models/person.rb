@@ -12,8 +12,6 @@ class Person < ActiveRecord::Base
   scope :ordering, -> { (order(:name)) }
   scope :full, -> { includes(films: :genre, produced_films: :genre) }
 
-
-
   def self.edit_by?(u)
     u.try(:admin?)
   end
@@ -29,6 +27,16 @@ class Person < ActiveRecord::Base
     res -= 1 if Date.new(d.year, birthday.month, birthday.day) > d
     res
   end
+
+  def dayperson(d = nil)
+    d ||= Date.today
+    return unless birthday
+    if d.month == birthday.month && d.day == birthday.day
+      res = 0
+      res
+    end
+  end
+
 
   def human_age(d = nil)
     "#{age(d)} #{RuPropisju.choose_plural(age(d), 'год', 'года', 'лет')}"
