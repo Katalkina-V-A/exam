@@ -26,6 +26,11 @@
         -if @person.country
           %dt=Film.human_attribute_name(:country)
           %dd=link_to @person.country.name,@person.country
+    -if @person.films.any?
+      %i.text-muted
+        -Film.gen(@person).each do |i|
+          =i.genre.name
+        %br
     -if @person.produced_films.any?
       %h3=Film.human_attribute_name(:director_id)
       .list-group

@@ -27,6 +27,12 @@ class Film < ActiveRecord::Base
     u.try(:admin?)
   end
 
+
+  def self.gen(person)
+    gens = Film.joins(:people).where(films_people: {person_id: person}).order(:genre_id)
+    gens
+  end
+
   def self.latest(id)
     Film.joins(:people).where('films_people.person_id = ?', id).order(:year).last
   end
