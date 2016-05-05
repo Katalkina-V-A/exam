@@ -2,13 +2,14 @@ class User < ActiveRecord::Base
   has_secure_password
 
 ROLES = %w(Пользователь Администратор)
+SEXES = %w(Мужской Женский)
 
 validates :name, presence: true, length: {minimum: 2, maximum: 255}
 validates :email, presence: true, uniqueness: {case_sensitive: false},
           format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 validates :role, presence: true, inclusion: {in: 0..ROLES.size}
+validates :sex, presence: true, inclusion: {in: 0..SEXES.size}
 validates :password, length: {minimum: 6, if: 'password.present?'}, presence: {on: :create}
-# validates :phone, presence: true
 
 before_validation :set_default_role
 
@@ -20,6 +21,9 @@ end
 
 def role_name
   role && ROLES[role]
+end
+def sex_name
+  sex && SEXES[sex]
 end
 
 def admin?

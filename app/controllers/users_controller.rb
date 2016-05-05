@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :check_edit, except: [:new, :create, :edit]
+  before_action :check_edit, except: [:new, :create, :edit, :update,:show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_edit_user
 
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   def user_params
     attrs = [:name, :email, :password, :password_confirmation]
     attrs << :role if @current_user.try(:admin?)
-    params.require(:user).permit(attrs, :phone)
+    params.require(:user).permit(attrs, :phone, :sex, :birthday)
   end
 
   def check_edit

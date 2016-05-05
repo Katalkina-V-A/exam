@@ -21,6 +21,7 @@
               =@current_user.email
               =fa_icon 'angle-down'
             %ul.dropdown-menu
+              %li=link_to 'Личный кабинет', @current_user
               %li=link_to 'Редактировать', edit_user_path(@current_user)
               %li=link_to 'Выход', logout_path
         -else

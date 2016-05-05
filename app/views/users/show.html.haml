@@ -4,13 +4,21 @@
   =link_to edit_user_path(@user), class: 'btn btn-primary' do
     =fa_icon 'edit'
     Редактировать
-  =link_to @user, class: 'btn btn-danger', data: {method: :delete, confirm: t('helpers.sure')} do
-    =fa_icon 'trash'
-    Удалить
+  -if User.edit_by?(@current_user)
+    =link_to @user, class: 'btn btn-danger', data: {method: :delete, confirm: t('helpers.sure')} do
+      =fa_icon 'trash'
+      Удалить
 %dl
   %dt=User.human_attribute_name(:name)
   %dd=@user.name
-  %dt=User.human_attribute_name(:phone)
-  %dd=@user.phone
+  -if @user.birthday
+    %dt=User.human_attribute_name(:birthday)
+    %dd=l(@user.birthday)
+  -if @user.sex
+    %dt=User.human_attribute_name(:sex)
+    %dd=@user.sex_name
+  -if @user.phone
+    %dt=User.human_attribute_name(:phone)
+    %dd=@user.phone
   %dt=User.human_attribute_name(:role)
   %dd=@user.role_name

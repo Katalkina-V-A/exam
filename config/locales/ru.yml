@@ -22,6 +22,8 @@ ru:
         password_confirmation: Пароль (повторно)
         role: Роль
         phone: Телефон
+        sex: Пол
+        birthday: Дата рождения
       genre:
         name: Название
       country:

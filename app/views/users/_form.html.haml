@@ -4,6 +4,12 @@
     = f.label :name
     = f.text_field :name, class: 'form-control'
   .form-group
+    =f.label :birthday
+    =f.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@user.birthday) if @user.birthday)
+  .form-group
+    =f.label :sex
+    =f.select :sex, User::SEXES.map.with_index{|name,i| [name,i]}, {include_blank: true},class: 'form-control'
+  .form-group
     = f.label :email
     = f.email_field :email, class: 'form-control'
   .form-group
