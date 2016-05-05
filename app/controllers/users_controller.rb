@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :check_edit, except: [:new, :create]
+  before_action :check_edit, except: [:new, :create, :edit]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_edit_user
 
   def index
     @users = User.ordering.page(params[:page])
@@ -55,10 +55,14 @@ class UsersController < ApplicationController
   def user_params
     attrs = [:name, :email, :password, :password_confirmation]
     attrs << :role if @current_user.try(:admin?)
-    params.require(:user).permit(attrs)
+    params.require(:user).permit(attrs, :phone)
   end
 
   def check_edit
     render_error unless User.edit_by?(@current_user)
+  end
+
+  def check_edit_user
+    render_error unless User.edit_user_by?(@user,@current_user)
   end
 end

@@ -8,7 +8,7 @@ validates :email, presence: true, uniqueness: {case_sensitive: false},
           format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 validates :role, presence: true, inclusion: {in: 0..ROLES.size}
 validates :password, length: {minimum: 6, if: 'password.present?'}, presence: {on: :create}
-
+# validates :phone, presence: true
 
 before_validation :set_default_role
 
@@ -32,4 +32,7 @@ end
   end
 
 
+  def self.edit_user_by?(u, cu)
+    u == cu || cu.try(:admin?)
+  end
 end

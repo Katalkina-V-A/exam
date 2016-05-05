@@ -21,6 +21,7 @@ ru:
         password: Пароль
         password_confirmation: Пароль (повторно)
         role: Роль
+        phone: Телефон
       genre:
         name: Название
       country:
@@ -32,6 +33,7 @@ ru:
         avatar: Фото
         films: Фильмы
         produced_films: Срежиссированные фильмы
+        country_id: Страна
       film:
         name: Название
         origin_name: Название (в оригинале)
