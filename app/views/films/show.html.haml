@@ -12,6 +12,16 @@
       %i.text-muted
         Просмотров:
         =@film.impressionist_count(:filter => :all)
+    -if @film.users.empty?
+      %br.text-center
+        %i.text-muted
+          Мне нравится: 0
+    -else
+      %br.text-center
+        %i.text-muted
+          Мне нравится:
+          =@film.users.count
+
   .col-md-9
     -if @film.slogan.present?
       %blockquote
