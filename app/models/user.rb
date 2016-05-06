@@ -10,7 +10,7 @@ validates :email, presence: true, uniqueness: {case_sensitive: false},
 validates :role, presence: true, inclusion: {in: 0..ROLES.size}
 validates :sex, presence: true, inclusion: {in: 0..SEXES.size}
 validates :password, presence: {on: :create}, format: {with: /\A(^(?=.*[a-z])(?=.*[0-9])).{6,}\z/}
-
+has_and_belongs_to_many :films
 before_validation :set_default_role
 
 scope :ordering,->{order(:name)}

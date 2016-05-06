@@ -5,7 +5,7 @@ class Film < ActiveRecord::Base
   belongs_to :genre
   belongs_to :director, class_name: 'Person'
   has_and_belongs_to_many :people, -> { ordering }
-
+  has_and_belongs_to_many :users
 
   validates :name, presence: true
   validates :country, presence: true
@@ -32,13 +32,13 @@ class Film < ActiveRecord::Base
     gens = Film.joins(:people).where(films_people: {person_id: person}).order(:genre_id)
     gens
   end
-
-  def self.latest(id)
-    Film.joins(:people).where('films_people.person_id = ?', id).order(:year).last
-  end
-  def self.premier(id)
-    Film.joins(:people).where('films_people.person_id = ?', id).order(:year).first
-  end
+  #
+  # def self.latest(id)
+  #   Film.joins(:people).where('films_people.person_id = ?', id).order(:year).last
+  # end
+  # def self.premier(id)
+  #   Film.joins(:people).where('films_people.person_id = ?', id).order(:year).first
+  # end
 
   def self.search(search)
     where("upper(name) like upper(:q) or upper(origin_name) like upper(:q)", q: "%#{search}%")

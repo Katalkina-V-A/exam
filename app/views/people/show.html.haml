@@ -41,10 +41,16 @@
           =render 'films/film', film: film
     -if @person.films.any?
       Фильмы(года):
-      =Film.premier(@person.id).year
+      -# =Film.premier(@person.id).year
+      -# —
+      -# -if Film.premier(@person.id).year != Film.latest(@person.id).year
+      -#   =Film.latest(@person.id).year
+      -# -else
+      -#   ?...
+      =@person.films.order(:year).first.year
       —
-      -if Film.premier(@person.id).year != Film.latest(@person.id).year
-        =Film.latest(@person.id).year
+      -if @person.films.order(:year).first.year != @person.films.order(:year).last.year
+        =@person.films.order(:year).last.year
       -else
         ?...
       %h3=Person.human_attribute_name(:films)

@@ -1,6 +1,6 @@
 class FilmsController < ApplicationController
   before_action :check_authentication, except: :index
-  before_action :check_edit, except: [:index, :show]
+  before_action :check_edit, except: [:index, :show, :add]
   impressionist actions: [:show]
   before_action :set_film, only: [:show, :edit, :update, :destroy]
 
@@ -40,6 +40,27 @@ class FilmsController < ApplicationController
       redirect_to films_url, notice: 'Файл удален.'
     else
       render_error("Удаление фильма невозможно", url: @film)
+    end
+  end
+
+  def add
+    type = params[:type]
+    if type == "favorite"
+      user = @current_user
+      film = Film.find(params[:id])
+      if user.films.exists?(film)
+        redirect_to :back, notice: 'Ничего не произошло.'
+      else
+        user.films << film
+        redirect_to :back, notice: 'Добавлен в избранное.'
+      end
+    elsif type == "unfavorite"
+      user = @current_user
+      film = Film.find(params[:id])
+      user.films.delete(film)
+      redirect_to :back, notice: 'Удален из избранного.'
+    else
+      redirect_to :back, notice: 'Ничего не произошло.'
     end
   end
 

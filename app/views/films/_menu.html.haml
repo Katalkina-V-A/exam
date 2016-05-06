@@ -6,3 +6,9 @@
     =link_to @film, data: {method: :delete, confirm: t('helpers.sure')}, class: 'btn btn-danger' do
       =fa_icon 'trash'
       Удалить
+-elsif @current_user!=0
+  .btn-toolbar
+    -if @current_user.films.exists?(@film)
+      =link_to 'Из избранного', add_film_path(id: @film, type: "unfavorite"), method: :put, class: 'btn btn-primary'
+    -else
+      =link_to 'В избранное', add_film_path(id: @film, type: "favorite"), method: :put, class: 'btn btn-primary'

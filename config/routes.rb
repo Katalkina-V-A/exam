@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  get 'favorite/index'
+
   get 'countrysearch/index'
 
   get 'search/index'
 
-  resources :films
+  resources :films do
+    put :add, on: :member
+  end
+  # resources :films
   resources :people
   resources :countries
   resources :genres
